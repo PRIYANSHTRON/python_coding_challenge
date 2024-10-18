@@ -52,7 +52,7 @@ if __name__ == "__main__":
             clientName = input("Enter client name: ")
             contactInfo = input("Enter contact info: ")
             policy = input("Enter policy: ")
-            client = Client(clientName=clientName, contactInfo=contactInfo, policy=policy)
+            client = Client(client_name=clientName, contact_info=contactInfo, policy=policy)
             client_service.createClient(client)
             print("Client created successfully!")
 

@@ -35,6 +35,3 @@ class Payment:
     def __str__(self):
         return (f"Payment(payment_id={self.__payment_id}, payment_date='{self.__payment_date}', "
                 f"payment_amount={self.__payment_amount}, client='{self.__client}')")
-
-
-  

@@ -15,7 +15,7 @@ class ClientServiceImpl:
     def createClient(self, client):
         cursor = self.conn.cursor()
         query = "INSERT INTO Clients (clientName, contactInfo, policy) VALUES (?, ?, ?)"
-        cursor.execute(query,client.get_clientName(), client.get_contactInfo(), client.get_policy())
+        cursor.execute(query,client.get_client_name(), client.get_contact_info(), client.get_policy())
         self.conn.commit()
         return True
 
@@ -42,7 +42,7 @@ class ClientServiceImpl:
     def updateClient(self, client):
         cursor = self.conn.cursor()
         query = "UPDATE Clients SET clientName = ?, contactInfo = ?, policy = ? WHERE clientId = ?"
-        cursor.execute(query, client.get_clientName(), client.get_contactInfo(), client.get_policy(), client.get_clientId())
+        cursor.execute(query, client.get_client_id(), client.get_contact_info(), client.get_policy(), client.get_client_id())
         self.conn.commit()
         return True
 
