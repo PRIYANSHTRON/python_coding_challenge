@@ -25,7 +25,7 @@ class UserServiceImpl:
         cursor.execute(query, userId)
         result = cursor.fetchone()
         if result:
-            return User(userId=result.userId, username=result.username, password=result.password, role=result.role)
+            return User(user_id=result.userId, username=result.username, password=result.password, role=result.role)
         else:
             return None
 
@@ -35,14 +35,14 @@ class UserServiceImpl:
         cursor.execute(query)
         users = []
         for row in cursor.fetchall():
-            user = User(userId=row.userId, username=row.username, password=row.password, role=row.role)
+            user = User(user_id=row.userId, username=row.username, password=row.password, role=row.role)
             users.append(user)
         return users
 
     def updateUser(self, user):
         cursor = self.conn.cursor()
         query = "UPDATE Users SET username = ?, password = ?, role = ? WHERE userId = ?"
-        cursor.execute(query, user.get_username(), user.get_password(), user.get_role(), user.get_userId())
+        cursor.execute(query, user.get_username(), user.get_password(), user.get_role(), user.get_user_id())
         self.conn.commit()
         return True
 

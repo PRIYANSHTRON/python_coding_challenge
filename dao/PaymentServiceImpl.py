@@ -16,7 +16,7 @@ class PaymentServiceImpl:
     def createPayment(self, payment):
         cursor = self.conn.cursor()
         query = "INSERT INTO Payments (paymentDate, paymentAmount, clientId) VALUES (?, ?, ?)"
-        cursor.execute(query, payment.get_paymentDate(), payment.get_paymentAmount(), payment.get_client())
+        cursor.execute(query, payment.get_payment_date(), payment.get_payment_amount(), payment.get_client())
         self.conn.commit()
         return True
 
@@ -26,7 +26,7 @@ class PaymentServiceImpl:
         cursor.execute(query, paymentId)
         result = cursor.fetchone()
         if result:
-            return Payment(paymentId=result.paymentId, paymentDate=result.paymentDate, paymentAmount=result.paymentAmount, client=result.clientId)
+            return Payment(payment_id=result.paymentId, payment_date=result.paymentDate, payment_amount=result.paymentAmount, client=result.clientId)
         else:
             return None
 
@@ -36,14 +36,14 @@ class PaymentServiceImpl:
         cursor.execute(query)
         payments = []
         for row in cursor.fetchall():
-            payment = Payment(paymentId=row.paymentId, paymentDate=row.paymentDate, paymentAmount=row.paymentAmount, client=row.clientId)
+            payment = Payment(payment_id=row.paymentId, paymentDate=row.paymentDate, paymentAmount=row.paymentAmount, client=row.clientId)
             payments.append(payment)
         return payments
 
     def updatePayment(self, payment):
         cursor = self.conn.cursor()
         query = "UPDATE Payments SET paymentDate = ?, paymentAmount = ?, clientId = ? WHERE paymentId = ?"
-        cursor.execute(query, payment.get_paymentDate(), payment.get_paymentAmount(), payment.get_client(), payment.get_paymentId())
+        cursor.execute(query, payment.get_payment_date(), payment.get_payment_amount(), payment.get_client(), payment.get_paymentId())
         self.conn.commit()
         return True
 

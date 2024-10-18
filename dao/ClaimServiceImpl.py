@@ -15,7 +15,7 @@ class ClaimServiceImpl:
     def createClaim(self, claim):
         cursor = self.conn.cursor()
         query = "INSERT INTO Claims (claimNumber, dateFiled, claimAmount, status, clientId, policy) VALUES (?, ?, ?, ?, ?, ?)"
-        cursor.execute(query, claim.get_claimNumber(), claim.get_dateFiled(), claim.get_claimAmount(), claim.get_status(), claim.get_client(), claim.get_policy())
+        cursor.execute(query, claim.get_claim_number(), claim.get_date_filed(), claim.get_claim_amount(), claim.get_status(), claim.get_client(), claim.get_policy())
         self.conn.commit()
         return True
 
@@ -25,7 +25,7 @@ class ClaimServiceImpl:
         cursor.execute(query, claimId)
         result = cursor.fetchone()
         if result:
-            return Claim(claimId=result.claimId, claimNumber=result.claimNumber, dateFiled=result.dateFiled, claimAmount=result.claimAmount, status=result.status, clientId=result.clientId, policy=result.policy)
+            return Claim(claim_id=result.claimId, claim_number=result.claimNumber, date_filed=result.dateFiled, claim_amount=result.claimAmount, status=result.status, client=result.clientId, policy=result.policy)
         else:
             return None
 
@@ -35,7 +35,7 @@ class ClaimServiceImpl:
         cursor.execute(query)
         claims = []
         for row in cursor.fetchall():
-            claim = Claim(claimId=row.claimId, claimNumber=row.claimNumber, dateFiled=row.dateFiled, claimAmount=row.claimAmount, status=row.status, clientId=row.clientId, policy=row.policy)
+            claim = Claim(claim_id=row.claimId, claim_number=row.claimNumber, date_filed=row.dateFiled, claim_amount=row.claimAmount, status=row.status, client=row.clientId, policy=row.policy)
             claims.append(claim)
         return claims
 

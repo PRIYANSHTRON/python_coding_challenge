@@ -115,7 +115,7 @@ if __name__ == "__main__":
             username = input("Enter new username: ")
             password = input("Enter new password: ")
             role = input("Enter new role (admin/user): ")
-            user = User(userId=userId, username=username, password=password, role=role)
+            user = User(user_id=userId, username=username, password=password, role=role)
             user_service.updateUser(user)
             print("User updated successfully!")
 
@@ -131,8 +131,8 @@ if __name__ == "__main__":
             status = input("Enter status: ")
             policy = input("Enter associated policy: ")
             clientId = input("Enter associated client: ")
-            claim = Claim(claimNumber=claimNumber, dateFiled=dateFiled, claimAmount=claimAmount, status=status,
-                          policy=policy, clientId=clientId)
+            claim = Claim(claim_number=claimNumber, date_filed=dateFiled, claim_amount=claimAmount, status=status,
+                          policy=policy, client=clientId)
             claim_service.createClaim(claim)
             print("Claim created successfully!")
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
             paymentDate = input("Enter payment date (YYYY-MM-DD): ")
             paymentAmount = float(input("Enter payment amount: "))
             client = input("Enter associated client: ")
-            payment = Payment(paymentDate=paymentDate, paymentAmount=paymentAmount, client=client)
+            payment = Payment(payment_date=paymentDate, payment_amount=paymentAmount, client=client)
             payment_service.createPayment(payment)
             print("Payment created successfully!")
 
